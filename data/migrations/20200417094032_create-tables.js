@@ -33,6 +33,7 @@ exports.up = function (knex) {
           .onUpdate("CASCADE")
           .onDelete("RESTRICT");
       })
+      // tasks
       .createTable("tasks", (tbl) => {
         tbl.increments("id");
         tbl.text("description").notNullable();
