@@ -44,6 +44,28 @@ router.delete("/:id", (req, res) => {
     });
 });
 
+// UPDATE projects
+router.put("/:id", (req, res) => {
+  const { id } = req.params;
+  const changes = req.body;
+
+  Projects.updateProjects(id)
+    .then((update) => {
+      if (update) {
+        Schemes.update(changes, id).then((updated) => {
+          res.json(updated);
+        });
+      } else {
+        res
+          .status(404)
+          .json({ message: "Could not find scheme with given id" });
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
+});
+
 // GET resources
 router.get("/resources", (req, res) => {
   Projects.getResources()
@@ -86,6 +108,28 @@ router.delete("/resources/:id", (req, res) => {
     });
 });
 
+// UPDATE resources
+router.put("/resources/:id", (req, res) => {
+  const { id } = req.params;
+  const changes = req.body;
+
+  Projects.updateResources(id)
+    .then((update) => {
+      if (update) {
+        Schemes.update(changes, id).then((updated) => {
+          res.json(updated);
+        });
+      } else {
+        res
+          .status(404)
+          .json({ message: "Could not find scheme with given id" });
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
+});
+
 // GET tasks
 router.get("/tasks", (req, res) => {
   Projects.getTasks()
@@ -117,6 +161,28 @@ router.delete("/tasks/:id", (req, res) => {
     .then((deleted) => {
       if (deleted) {
         res.status(200).json({ removed: deleted });
+      } else {
+        res
+          .status(404)
+          .json({ message: "Could not find scheme with given id" });
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
+});
+
+// UPDATE tasks
+router.put("/tasks/:id", (req, res) => {
+  const { id } = req.params;
+  const changes = req.body;
+
+  Projects.updateTasks(id)
+    .then((update) => {
+      if (update) {
+        Schemes.update(changes, id).then((updated) => {
+          res.json(updated);
+        });
       } else {
         res
           .status(404)
