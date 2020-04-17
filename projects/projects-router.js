@@ -49,12 +49,10 @@ router.put("/:id", (req, res) => {
   const { id } = req.params;
   const changes = req.body;
 
-  Projects.updateProjects(id)
+  Projects.updateProjects(id, changes)
     .then((update) => {
       if (update) {
-        Schemes.update(changes, id).then((updated) => {
-          res.json(updated);
-        });
+        res.json(update);
       } else {
         res
           .status(404)
@@ -109,16 +107,14 @@ router.delete("/resources/:id", (req, res) => {
 });
 
 // UPDATE resources
-router.put("/resources/:id", (req, res) => {
+router.put("/:id", (req, res) => {
   const { id } = req.params;
   const changes = req.body;
 
-  Projects.updateResources(id)
+  Projects.updateResources(id, changes)
     .then((update) => {
       if (update) {
-        Schemes.update(changes, id).then((updated) => {
-          res.json(updated);
-        });
+        res.json(update);
       } else {
         res
           .status(404)
@@ -173,16 +169,14 @@ router.delete("/tasks/:id", (req, res) => {
 });
 
 // UPDATE tasks
-router.put("/tasks/:id", (req, res) => {
+router.put("/:id", (req, res) => {
   const { id } = req.params;
   const changes = req.body;
 
-  Projects.updateTasks(id)
+  Projects.updateTasks(id, changes)
     .then((update) => {
       if (update) {
-        Schemes.update(changes, id).then((updated) => {
-          res.json(updated);
-        });
+        res.json(update);
       } else {
         res
           .status(404)

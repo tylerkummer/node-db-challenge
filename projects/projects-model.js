@@ -27,7 +27,7 @@ function removeResources(id) {
   return db("resources").where({ id }).del();
 }
 
-function updateResources(changes, id) {
+function updateResources(id, changes) {
   return db("resources").where({ id }).update(changes);
 }
 
@@ -43,7 +43,7 @@ function removeProjects(id) {
   return db("projects").where({ id }).del();
 }
 
-function updateProjects(changes, id) {
+function updateProjects(id, changes) {
   return db("projects").where({ id }).update(changes);
 }
 
@@ -69,6 +69,6 @@ function removeTasks(id) {
   return db("tasks").where({ id }).del();
 }
 
-function updateTasks(changes, id) {
+function updateTasks(id, changes) {
   return db("tasks").where({ id }).update(changes);
 }
